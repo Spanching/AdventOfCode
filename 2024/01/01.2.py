@@ -1,6 +1,4 @@
 
-import os
-
 l1, l2 = [], []
 
 with open("2024/01/input", "r") as f:
