@@ -3,7 +3,7 @@ sys.path.append("c:/Users/AndreasK/Projects/AdventOfCode")
 
 import util.input as util
 
-day = 1
+day = 4
 sample = True
 path = f"2024/{day:02d}/{'sample_' if sample else ''}input"
 
