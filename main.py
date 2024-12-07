@@ -18,9 +18,9 @@ if __name__ == '__main__':
 
     date = datetime.datetime.now()
     year = date.year
-    day = 6 #date.day
-    input_path = f"{year}/{day:02d}/{'sample_' if sample else ''}input"
-    module_path = f"{year}.{day:02d}.{day:02d}"
+    day = date.day
+    input_path = f"{year}/{day:02d}/{'sample_' if sample else ''}input.txt"
+    module_path = f"{year}.{day:02d}.tasks"
 
     daily_module = importlib.import_module(module_path)
 

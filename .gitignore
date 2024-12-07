@@ -1,3 +1,6 @@
 /**/input
 /**/sample_input
+/**/input.txt
+/**/sample_input.txt
 **/__pycache__/
+.venv/
