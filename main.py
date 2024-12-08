@@ -9,7 +9,7 @@ sample = True
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:
-        sample = sys.argv[1] == "sample"
+        sample = not sys.argv[1] == "main"
 
     def _measure_time(foo):
         start = time.time()
