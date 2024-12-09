@@ -24,7 +24,7 @@ if __name__ == '__main__':
 
     daily_module = importlib.import_module(module_path)
 
-    input = util.input.get_input_as_line_list(input_path)
+    input = util.input.get_input_as_one_line_string(input_path)
 
     if hasattr(daily_module, "task1"):
         print(f"DAY {day:02d}: TASK 1")
