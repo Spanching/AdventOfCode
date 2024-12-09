@@ -38,19 +38,7 @@ def task1(puzzle_input: str) -> int:
         sum += int(data) * idx
     return sum
 
-def extract_block(memory, mem_idx):
-    rev_memory = memory[0:mem_idx+1][::-1]
-    idx = 0
-    data = rev_memory[idx]
-    length = 0
-    for d in rev_memory:
-        if d == data:
-            length += 1
-        else:
-            break
-    return (data, length)
-
-def extract_memory2(filesystem):
+def extract_system(filesystem):
     system = []
     fs_idx = 0
     for idx, amount in enumerate(filesystem):
@@ -73,58 +61,8 @@ def checksum(system):
             sum += (b+i)*n
     return sum
 
-def remove_block(system, block, index):
-    before = system[index-1]
-    had_before = False
-    if before[2] == -1:
-        #space before -> append this one
-        del system[index-1]
-        system.insert(index-1, (before[0], block[1], -1))
-        had_before = True
-    if index != len(system)-1:
-        # not last
-        after = system[index+1]
-        if after[2] == -1:
-            # space after
-            if had_before:
-                del system[index-1]
-                system.insert(index-1, (before[0], after[1], -1))
-                del system[index+1]
-            else:
-                del system[index+1]
-                system.insert(index+1, (block[0], after[1], -1))
-    del system[index]
-
-def find_block(system, length):
-    for idx, block in enumerate(system[::-1]):
-        if block[2] == -1:
-            # is space
-            continue
-        if block[1]-block[0] <= length:
-            remove_block(system, block, len(system)-1-idx)
-            return block
-    return None
-
-def remove_space(system, space, block_length, index):
-    if space[1]-space[0] == block_length:
-        del system[index]
-        return
-    else:
-        del system[index]
-        system.insert(index, (space[0]+block_length, space[1], -1))
-
-def find_space(system, length):
-    for idx, space in enumerate(system):
-        if space[2] == -1:
-            # is space
-            if space[1]-space[0] >= length:
-                remove_space(system, space, length, idx)
-                return space
-    return None
-
 def task2(puzzle_input: str) -> int:
-    memory = extract_memory(puzzle_input)
-    system = extract_memory2(puzzle_input)
+    system = extract_system(puzzle_input)
     result = []
     while system:
         first = system[0]
