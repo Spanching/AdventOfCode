@@ -21,10 +21,20 @@ if __name__ == '__main__':
     day = date.day
     input_path = f"{year}/{day:02d}/{'sample_' if sample else ''}input.txt"
     module_path = f"{year}.{day:02d}.tasks"
-
     daily_module = importlib.import_module(module_path)
 
-    input = util.input.get_input_as_one_line_string(input_path)
+    input_method = ""
+    if hasattr(daily_module, "input"):
+        input_method = daily_module.input()
+    match input_method:
+        case "raw":
+            input = util.input.get_input_as_raw_string(input_path)
+        case "oneline":
+            input = util.input.get_input_as_one_line_string(input_path)
+        case "intlist":
+            input = util.input.get_input_as_int_list(input_path)
+        case _:
+            input = util.input.get_input_as_line_list(input_path)
 
     if hasattr(daily_module, "task1"):
         print(f"DAY {day:02d}: TASK 1")

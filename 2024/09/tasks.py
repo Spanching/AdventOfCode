@@ -1,4 +1,7 @@
 
+def input():
+    return "oneline"
+
 def extract_memory(filesystem):
     memory = []
     for idx, amount in enumerate(filesystem):
