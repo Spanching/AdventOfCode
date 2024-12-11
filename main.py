@@ -33,6 +33,8 @@ if __name__ == '__main__':
             input = util.input.get_input_as_one_line_string(input_path)
         case "intlist":
             input = util.input.get_input_as_int_list(input_path)
+        case "int":
+            input = util.input.get_input_as_oneline_int_list(input_path)
         case _:
             input = util.input.get_input_as_line_list(input_path)
 
